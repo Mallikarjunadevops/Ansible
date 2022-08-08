@@ -1,5 +1,5 @@
 ---
-- name: install httpd and open appache app  in browser
+- name: install httpd and open appache app  in IE browser 
   hosts: test
   become: yes
   tasks:
