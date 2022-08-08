@@ -1,0 +1,24 @@
+---
+- name: install httpd and open appache app  in browser
+  hosts: test
+  become: yes
+  tasks:
+    - name: install httpd 
+      yum:
+        name: httpd
+        state: present
+    - name: start httpd  service
+      service:
+        name: httpd 
+        state: started 
+    - name: enable firewall
+      firewalld:
+        zone: public
+        port: 80/tcp 
+        permanent: yes
+        immediate: yes
+        state: enabled
+    - name: check status code
+      uri:
+        url: http://192.168.56.101:80
+        status_code: 200  
